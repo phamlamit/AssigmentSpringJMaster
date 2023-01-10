@@ -2,10 +2,14 @@ package com.java.assigment.repository;
 
 import com.java.assigment.dto.request.TicketSearchRequest;
 import com.java.assigment.entity.Ticket;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,36 +18,48 @@ public class CustomRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Autowired
+    private DepartmentRepository departmentRepository;
+
     public List<Ticket> searchTicket(TicketSearchRequest request) {
         List<Ticket> result = new ArrayList<>();
-        StringBuilder query = createSearchQuery(request);
-        entityManager.createQuery("SELECT t FROM Ticket t WHERE t.createdDate  =>" + request.getKeyWorld(), Ticket.class).;
-        result = entityManager.createQuery(query.toString(), Ticket.class).getResultList();
-        return result;
+        StringBuilder sql = createSearchQuery(request);
+        System.out.println(sql.toString());
+        Query query = entityManager.createNativeQuery(sql.toString(), Ticket.class);
+        return query.getResultList();
     }
 
     private StringBuilder createSearchQuery(TicketSearchRequest request) {
-        StringBuilder result = new StringBuilder("SELECT t FROM Ticket t ");
-        if (!request.getKeyWorld().isEmpty() ||
-                !request.getDepartmentId().isEmpty() ||
-                !request.getTo().toString().isEmpty() ||
-                !request.getFrom().toString().isEmpty()) {
-            result.append("WHERE ");
+        StringBuilder result = new StringBuilder("SELECT * FROM Ticket t ");
+        if (StringUtils.isNotBlank(request.getKeyWorld()) ||
+                request.getDepartmentId() != null ||
+                request.getFrom() != null ||
+                request.getTo() != null) {
+            result.append("WHERE 1=1 ");
             if (!request.getKeyWorld().isEmpty()) {
-                result.append("t.id = " + request.getKeyWorld());
+                result.append(" AND ");
+
+                result.append(" t.name_customer LIKE " + "'%").append(request.getKeyWorld()).append("%'").append(" OR t.phone_customer LIKE ").append("'%").append(request.getKeyWorld()).append("%'");
             }
-            if (!request.getDepartmentId().isEmpty()) {
-                result.append("t.department.id = " + request.getDepartmentId());
+            if (request.getDepartmentId() != null) {
+                result.append(" AND ");
+                result.append("t.department_id = ").append(request.getDepartmentId());
             }
-            if (!request.getFrom().toString().isEmpty() && !request.getTo().toString().isEmpty()) {
-                result.append("t.createdDate >= " + request.getFrom());
-                result.append("t.createdDate.id <= " + request.getTo());
+            if (request.getTo() != null && request.getFrom() != null) {
+                java.util.Date utilDate = new java.util.Date();
+                java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+                result.append(" AND ");
+                result.append(" t.created_date >= " + "'").append(new Date(request.getTo().getTime())).append("'");
+                result.append(" AND t.created_date <= " + "'").append(new Date(request.getFrom().getTime())).append("'");
             } else {
-                if (!request.getTo().toString().isEmpty()) {
-                    result.append("t.createdDate.id = " + request.getTo());
+                if (request.getTo() != null) {
+                    result.append(" AND ");
+                    result.append(" t.created_date = " + "'").append(new Date(request.getTo().getTime())).append("'");
                 }
-                if (!request.getFrom().toString().isEmpty()) {
-                    result.append("t.createdDate.id = " + request.getFrom());
+
+                if (request.getFrom() != null) {
+                    result.append(" AND ");
+                    result.append(" t.created_date = " + "'").append(new Date(request.getFrom().getTime())).append("'");
                 }
             }
         }

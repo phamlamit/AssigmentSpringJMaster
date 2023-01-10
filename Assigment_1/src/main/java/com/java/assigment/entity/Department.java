@@ -24,7 +24,7 @@ public class Department implements Serializable {
 
     String name;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "created_date")
     Date createdDate;
 

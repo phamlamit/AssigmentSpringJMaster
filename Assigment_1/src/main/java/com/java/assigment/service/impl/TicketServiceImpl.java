@@ -2,6 +2,7 @@ package com.java.assigment.service.impl;
 
 import com.java.assigment.dto.TicketDTO;
 import com.java.assigment.dto.request.TicketCreateRequest;
+import com.java.assigment.dto.request.TicketSearchRequest;
 import com.java.assigment.entity.Department;
 import com.java.assigment.entity.Ticket;
 import com.java.assigment.repository.CustomRepository;
@@ -33,18 +34,23 @@ public class TicketServiceImpl implements TicketService {
     private ModelMapper modelMapper;
 
     @Override
+    public List<TicketDTO> fillAll() {
+        return repository.findAll().stream().map(ticket -> modelMapper.map(ticket, TicketDTO.class)).collect(Collectors.toList());
+    }
+
+    @Override
     public TicketDTO create(TicketCreateRequest request) {
         Ticket ticket = modelMapper.map(request, Ticket.class);
         Department department = departmentRepository.findById(request.departmentId).orElse(null);
         if (department != null) {
-            ticket.setDepartmentId(department);
+            ticket.setDepartment(department);
             ticket.setCreatedDate(Date.from(Instant.now()));
         }
         return modelMapper.map(repository.save(ticket), TicketDTO.class);
     }
 
     @Override
-    public List<TicketDTO> search(TicketCreateRequest request) {
+    public List<TicketDTO> search(TicketSearchRequest request) {
         return customRepository.searchTicket(request).stream().map(ticket -> {
             return modelMapper.map(ticket, TicketDTO.class);
         }).collect(Collectors.toList());

@@ -36,11 +36,11 @@ public class Ticket implements Serializable {
 
     private Boolean status;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "resolved_date")
     private Date resolvedDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name = "created_date")
     private Date createdDate;
 

@@ -3,6 +3,7 @@ package com.java.assigment.dto.request;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -11,7 +12,9 @@ import java.util.Date;
 @AllArgsConstructor
 public class TicketSearchRequest {
     private String keyWorld;
-    private String departmentId;
+    private Integer departmentId;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
     private Date from;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
     private Date to;
 }
