@@ -18,7 +18,7 @@ public class AccountController {
 
     @GetMapping("/create")
     public String create(Model model) {
-        return "login";
+        return "signup";
     }
 
     @PostMapping("/create")
@@ -26,6 +26,6 @@ public class AccountController {
         if (service.create(request) != null) {
             model.addAttribute("message", "Account have been created successfully");
         }
-        return "login";
+        return "signup";
     }
 }

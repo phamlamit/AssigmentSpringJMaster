@@ -4,105 +4,124 @@
 <head>
 </head>
 <body>
-    <div th:fragment="nav">
-        <!-- Left Sidebar Start -->
-        <nav class="vertical_nav">
-            <div class="left_section menu_left" id="js-menu" >
-                <div class="left_section">
-                    <ul>
-                        <li class="menu--item">
-                            <a href="instructor_dashboard.html" class="menu--link" title="Dashboard">
-                                <i class="uil uil-apps menu--icon"></i>
-                                <span class="menu--label">Dashboard</span>
-                            </a>
+<div th:fragment="nav">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Toggle button -->
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                    <img
+                            src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+                            height="15"
+                            alt="MDB Logo"
+                            loading="lazy"
+                    />
+                </a>
+                <!-- Left links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Projects</a>
+                    </li>
+                </ul>
+                <!-- Left links -->
+            </div>
+            <!-- Collapsible wrapper -->
+
+            <!-- Right elements -->
+            <div class="d-flex align-items-center">
+                <!-- Icon -->
+                <a class="text-reset me-3" href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+
+                <!-- Notifications -->
+                <div class="dropdown">
+                    <a
+                            class="text-reset me-3 dropdown-toggle hidden-arrow"
+                            href="#"
+                            id="navbarDropdownMenuLink"
+                            role="button"
+                            data-mdb-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        <i class="fas fa-bell"></i>
+                        <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                    </a>
+                    <ul
+                            class="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="navbarDropdownMenuLink"
+                    >
+                        <li>
+                            <a class="dropdown-item" href="#">Some news</a>
                         </li>
-                        <li class="menu--item">
-                            <a href="instructor_courses.html" class="menu--link active" title="Courses">
-                                <i class='uil uil-book-alt menu--icon'></i>
-                                <span class="menu--label">Courses</span>
-                            </a>
+                        <li>
+                            <a class="dropdown-item" href="#">Another news</a>
                         </li>
-                        <li class="menu--item">
-                            <a href="instructor_analyics.html" class="menu--link" title="Analyics">
-                                <i class='uil uil-analysis menu--icon'></i>
-                                <span class="menu--label">Analyics</span>
-                            </a>
-                        </li>
-                        <li class="menu--item">
-                            <a href="create_new_course.html" class="menu--link" title="Create Course">
-                                <i class='uil uil-plus-circle menu--icon'></i>
-                                <span class="menu--label">Create Course</span>
-                            </a>
-                        </li>
-                        <li class="menu--item">
-                            <a href="instructor_messages.html" class="menu--link" title="Messages">
-                                <i class='uil uil-comments menu--icon'></i>
-                                <span class="menu--label">Messages</span>
-                            </a>
-                        </li>
-                        <li class="menu--item">
-                            <a href="instructor_notifications.html" class="menu--link" title="Notifications">
-                                <i class='uil uil-bell menu--icon'></i>
-                                <span class="menu--label">Notifications</span>
-                            </a>
-                        </li>
-                        <li class="menu--item">
-                            <a href="instructor_my_certificates.html" class="menu--link" title="My Certificates">
-                                <i class='uil uil-award menu--icon'></i>
-                                <span class="menu--label">My Certificates</span>
-                            </a>
-                        </li>
-                        <li class="menu--item">
-                            <a href="instructor_all_reviews.html" class="menu--link" title="Reviews">
-                                <i class='uil uil-star menu--icon'></i>
-                                <span class="menu--label">Reviews</span>
-                            </a>
-                        </li>
-                        <li class="menu--item">
-                            <a href="instructor_earning.html" class="menu--link" title="Earning">
-                                <i class='uil uil-dollar-sign menu--icon'></i>
-                                <span class="menu--label">Earning</span>
-                            </a>
-                        </li>
-                        <li class="menu--item">
-                            <a href="instructor_payout.html" class="menu--link" title="Payout">
-                                <i class='uil uil-wallet menu--icon'></i>
-                                <span class="menu--label">Payout</span>
-                            </a>
-                        </li>
-                        <li class="menu--item">
-                            <a href="instructor_statements.html" class="menu--link" title="Statements">
-                                <i class='uil uil-file-alt menu--icon'></i>
-                                <span class="menu--label">Statements</span>
-                            </a>
-                        </li>
-                        <li class="menu--item">
-                            <a href="instructor_verification.html" class="menu--link" title="Verification">
-                                <i class='uil uil-check-circle menu--icon'></i>
-                                <span class="menu--label">Verification</span>
-                            </a>
+                        <li>
+                            <a class="dropdown-item" href="#">Something else here</a>
                         </li>
                     </ul>
                 </div>
-                <div class="left_section pt-2">
-                    <ul>
-                        <li class="menu--item">
-                            <a href="setting.html" class="menu--link" title="Setting">
-                                <i class='uil uil-cog menu--icon'></i>
-                                <span class="menu--label">Setting</span>
-                            </a>
+                <!-- Avatar -->
+                <div class="dropdown">
+                    <a
+                            class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                            href="#"
+                            id="navbarDropdownMenuAvatar"
+                            role="button"
+                            data-mdb-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        <img
+                                src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                                class="rounded-circle"
+                                height="25"
+                                alt="Black and White Portrait of a Man"
+                                loading="lazy"
+                        />
+                    </a>
+                    <ul
+                            class="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="navbarDropdownMenuAvatar">
+                        <li>
+                            <a class="dropdown-item" href="#">My profile</a>
                         </li>
-                        <li class="menu--item">
-                            <a href="feedback.html" class="menu--link" title="Send Feedback">
-                                <i class='uil uil-comment-alt-exclamation menu--icon'></i>
-                                <span class="menu--label">Send Feedback</span>
-                            </a>
+                        <li>
+                            <a class="dropdown-item" href="#">Settings</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Logout</a>
                         </li>
                     </ul>
                 </div>
             </div>
-        </nav>
-        <!-- Left Sidebar End -->
-    </div>
+            <!-- Right elements -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+</div>
 </body>
 </html>
