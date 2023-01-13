@@ -35,4 +35,14 @@ public class AccountServiceImpl implements AccountService {
         }
         return null;
     }
+
+    @Override
+    public AccountDTO forgotPassword(String email) {
+        if (repository.findByEmail(email).isPresent()) {
+            Account account = repository.findByEmail(email).get();
+            account.setPassword("123");
+            return mapper.map(repository.save(account), AccountDTO.class);
+        }
+        return null;
+    }
 }

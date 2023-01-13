@@ -10,6 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DepartmentDTO {
+    private int id;
     private String name;
     private Date createdDate;
 }

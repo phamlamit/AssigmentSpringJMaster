@@ -5,25 +5,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class TicketCreateRequest {
-    @NotNull
-    @NotBlank
+    @NotEmpty
     public String nameCustomer;
 
-    @NotNull
-    @NotBlank
+    @NotEmpty
     public String phoneCustomer;
 
-    @NotNull
-    @NotBlank
+    @NotEmpty
     public String description;
 
-    @NotNull
-    @NotBlank
     public int departmentId;
 }

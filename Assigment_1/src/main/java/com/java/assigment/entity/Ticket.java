@@ -18,8 +18,7 @@ import java.util.Date;
 public class Ticket implements Serializable {
     private static final long serialVersionUID = -2498286535698650205L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

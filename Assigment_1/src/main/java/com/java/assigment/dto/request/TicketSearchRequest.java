@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class TicketSearchRequest {
     private String keyWorld;
-    private Integer departmentId;
+    private int departmentId;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
     private Date from;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")

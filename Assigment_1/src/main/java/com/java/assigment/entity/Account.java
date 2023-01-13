@@ -17,10 +17,11 @@ public class Account implements Serializable {
     private static final long serialVersionUID = -2498286535698650205L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @Column(name = "fullname")
     private String fullName;
 
     private String email;

@@ -9,4 +9,6 @@ public interface AccountService {
 
     public AccountDTO create(AccountCreateRequest request);
 
+    public AccountDTO forgotPassword(String email);
+
 }

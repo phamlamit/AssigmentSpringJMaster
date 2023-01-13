@@ -32,7 +32,7 @@ public class CustomRepository {
     private StringBuilder createSearchQuery(TicketSearchRequest request) {
         StringBuilder result = new StringBuilder("SELECT * FROM Ticket t ");
         if (StringUtils.isNotBlank(request.getKeyWorld()) ||
-                request.getDepartmentId() != null ||
+                request.getDepartmentId() != 0 ||
                 request.getFrom() != null ||
                 request.getTo() != null) {
             result.append("WHERE 1=1 ");
@@ -41,7 +41,7 @@ public class CustomRepository {
 
                 result.append(" t.name_customer LIKE " + "'%").append(request.getKeyWorld()).append("%'").append(" OR t.phone_customer LIKE ").append("'%").append(request.getKeyWorld()).append("%'");
             }
-            if (request.getDepartmentId() != null) {
+            if (request.getDepartmentId() != 0) {
                 result.append(" AND ");
                 result.append("t.department_id = ").append(request.getDepartmentId());
             }
